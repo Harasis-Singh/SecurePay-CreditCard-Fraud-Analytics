@@ -6,9 +6,17 @@
 - [x] Business Problem
 - [x] Project Objectives
 
+## Documentation
+- [ ] Data Dictionary
+- [ ] Business Questions
+- [ ] KPI Definitions
+- [ ] Project Architecture
+- [ ] Executive Summary
+
 ## Data Understanding
 - [x] Data Quality Assessment
 - [x] Business Understanding
+- [x] Data Preprocessing
 - [ ] Exploratory Data Analysis
 - [ ] Feature Engineering
 

@@ -21,3 +21,6 @@ Thumbs.db
 
 # Raw dataset
 data/raw/
+
+# Anaconda
+anaconda_projects_db/
