@@ -1,12 +1,22 @@
+# Raw data
+data/raw/creditcard.csv
+
+# Processed data
+data/processed/creditcard_clean.csv
+data/processed/creditcard_engineered.csv
+
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 
 # Jupyter
 .ipynb_checkpoints/
 
 # VS Code
 .vscode/
+
+# Anaconda
+anaconda_projects/
 
 # Virtual Environment
 venv/
@@ -16,11 +26,5 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Power BI temporary files
+# Power BI
 *.pbix.lock
-
-# Raw dataset
-data/raw/
-
-# Anaconda
-anaconda_projects_db/

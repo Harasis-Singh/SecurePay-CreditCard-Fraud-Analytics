@@ -17,8 +17,8 @@
 - [x] Data Quality Assessment
 - [x] Business Understanding
 - [x] Data Preprocessing
-- [ ] Exploratory Data Analysis
-- [ ] Feature Engineering
+- [x] Exploratory Data Analysis
+- [x] Feature Engineering
 
 ## Database
 - [ ] PostgreSQL Schema
