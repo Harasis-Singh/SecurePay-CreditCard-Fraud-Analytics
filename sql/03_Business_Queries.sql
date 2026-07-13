@@ -350,11 +350,4 @@ SELECT
 	avg_transaction_amount,
 	avg_fraud_amount
 FROM overall_summary
-CROSS JOIN fraud_summary;
-	
-
-
-
-
-
-
+CROSS JOIN fraud_summary;	

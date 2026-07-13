@@ -34,9 +34,13 @@ Exploratory Data Analysis
         ↓
 Feature Engineering
         ↓
-PostgreSQL Database
+PostgreSQL Database Design
+        ↓
+Data Import & ETL
         ↓
 SQL Business Analysis
+        ↓
+Reporting Views
         ↓
 Power BI Dashboard
         ↓
@@ -78,6 +82,10 @@ SecurePay-CreditCard-Fraud-Analytics/
 ├── reports/
 │
 ├── sql/
+│   ├── 01_Create_Schema.sql
+│   ├── 02_Import_Data.sql
+│   ├── 03_Business_Queries.sql
+│   └── 04_Create_Views.sql
 │
 ├── images/
 │
@@ -114,10 +122,10 @@ SecurePay-CreditCard-Fraud-Analytics/
 
 ## Database
 
-- ⏳ PostgreSQL Schema
-- ⏳ Data Import
-- ⏳ SQL Views
-- ⏳ Business Queries
+- ✅ PostgreSQL Schema
+- ✅ Data Import
+- ✅ Business Queries
+- ✅ SQL Views
 
 ## Visualization
 
@@ -156,8 +164,12 @@ Completed so far:
 - Data Preprocessing
 - Exploratory Data Analysis
 - Feature Engineering
+- PostgreSQL Database Design
+- Data Import & ETL
+- SQL Business Analysis
+- SQL Reporting Views
 
-The remaining phases include PostgreSQL database implementation, SQL business analysis, Power BI dashboard development, and executive reporting.
+The remaining phases include Power BI dashboard development, project documentation, executive reporting, and final GitHub polish.
 
 ---
 

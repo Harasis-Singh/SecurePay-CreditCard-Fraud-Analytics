@@ -21,10 +21,10 @@
 - [x] Feature Engineering
 
 ## Database
-- [ ] PostgreSQL Schema
-- [ ] Data Import
-- [ ] SQL Views
-- [ ] Business Queries
+- [x] PostgreSQL Schema
+- [x] Data Import
+- [x] Business Queries
+- [x] SQL Views
 
 ## Visualization
 - [ ] Power BI Dashboard
