@@ -1,3 +1,11 @@
+-- =====================================================
+-- SecurePay Credit Card Fraud Analytics
+-- File: 02_Import_Data.sql
+-- Description: Imports the preprocessed and feature-
+-- engineered credit card transaction dataset into the
+-- PostgreSQL database for SQL analysis.
+-- =====================================================
+
 COPY credit_card_transactions (
     time,
     v1, v2, v3, v4, v5, v6, v7, v8, v9, v10,

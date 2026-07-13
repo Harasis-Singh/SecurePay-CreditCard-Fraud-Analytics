@@ -6,6 +6,10 @@
 -- =====================================================
 
 
+-- #####################################################
+-- SECTION 1 : Dataset Overview
+-- #####################################################
+
 -- =====================================================
 -- Business Question 1
 -- What is the total number of transactions after preprocessing?
@@ -79,6 +83,10 @@ SELECT ROUND(CAST(AVG(amount) AS numeric), 2) AS avg_transaction_amount
 FROM credit_card_transactions;
 
 
+-- #####################################################
+-- SECTION 2 : Transaction Amount Analysis
+-- #####################################################
+
 -- =====================================================
 -- Business Question 5
 -- How are transactions distributed across different
@@ -98,8 +106,8 @@ ORDER BY transaction_count DESC;
 
 -- =====================================================
 -- Business Question 6
--- Which transaction amount category contains the highest
--- number of fraudulent transactions?
+-- How are fraudulent transactions distributed across
+-- different transaction amount categories?
 --
 -- Expected Insight:
 -- Identifies the transaction amount categories that are
@@ -150,6 +158,10 @@ ORDER BY amount DESC
 LIMIT 10;
 
 
+-- #####################################################
+-- SECTION 3 : Advanced Fraud Analytics
+-- #####################################################
+
 -- =====================================================
 -- Business Question 9
 -- Which transaction amount category has the highest
@@ -180,4 +192,169 @@ SELECT amount_category, fraud_count, total_transactions,
 ROUND((fraud_count * 100.0) / total_transactions, 2) AS fraud_percentage
 FROM fraud_summary
 ORDER BY fraud_percentage DESC;
+
+
+-- =====================================================
+-- Business Question 10
+-- Rank fraudulent transactions based on transaction
+-- amount to identify the highest-value fraud cases.
+--
+-- Expected Insight:
+-- Assigns a rank to each fraudulent transaction based
+-- on transaction amount, helping prioritize
+-- high-value fraud investigations.
+-- =====================================================
+
+SELECT transaction_id, amount, amount_category,
+	   DENSE_RANK() OVER(ORDER BY amount DESC) AS fraud_rank
+FROM credit_card_transactions
+WHERE class = 1;
+
+
+-- =====================================================
+-- Business Question 11
+-- How many transactions have a transaction amount of zero,
+-- and what proportion of them are fraudulent?
+--
+-- Expected Insight:
+-- Evaluates whether zero-value transactions exhibit
+-- unusual fraud characteristics.
+-- =====================================================
+
+WITH amount_0 AS (
+	SELECT
+	    SUM(
+	        CASE
+	            WHEN class = 1 THEN 1
+	            ELSE 0
+	        END
+	    ) AS fraud_transactions,
+	
+	    COUNT(*) AS total_transactions
+	
+	FROM credit_card_transactions
+	
+	WHERE amount = 0
+)
+
+SELECT fraud_transactions, total_transactions,
+	   ROUND((fraud_transactions * 100.0) / total_transactions, 2) AS fraud_percentage
+FROM amount_0;
+
+
+-- =====================================================
+-- Business Question 12
+-- How are fraudulent transactions distributed across
+-- transaction amount quartiles?
+--
+-- Expected Insight:
+-- Groups transactions into four equally sized spending
+-- quartiles and compares the number of fraudulent
+-- transactions in each quartile.
+-- =====================================================
+
+WITH quartiles AS (
+    SELECT
+        amount,
+        class,
+        NTILE(4) OVER (ORDER BY amount) AS spending_quartile
+    FROM credit_card_transactions
+)
+
+SELECT
+    spending_quartile,
+    COUNT(*) AS total_transactions,
+    SUM(CASE WHEN class = 1 THEN 1 ELSE 0 END) AS fraud_transactions
+FROM quartiles
+GROUP BY spending_quartile
+ORDER BY spending_quartile;
+
+
+-- =====================================================
+-- Business Question 13
+-- Identify fraudulent transactions whose transaction
+-- amount is higher than the average fraudulent
+-- transaction amount.
+--
+-- Expected Insight:
+-- Identifies unusually large fraudulent transactions
+-- relative to the average fraud amount, helping
+-- prioritize high-value investigations.
+-- =====================================================
+
+WITH avg_fraud AS (
+	SELECT ROUND(AVG(amount)::numeric, 2) AS avg_fraud_amount
+	FROM credit_card_transactions
+	WHERE class = 1
+)
+
+SELECT
+	transaction_id,
+	amount AS fraud_amount,
+	amount_category,
+	avg_fraud_amount
+FROM credit_card_transactions
+CROSS JOIN avg_fraud
+WHERE class = 1 AND amount > avg_fraud_amount
+ORDER BY amount DESC;
+
+
+-- =====================================================
+-- Business Question 14
+-- Assign a unique rank to fraudulent transactions
+-- based on transaction amount.
+--
+-- Expected Insight:
+-- Generates a unique ranking for each fraudulent
+-- transaction, even when multiple transactions have
+-- identical amounts.
+-- =====================================================
+
+SELECT
+	transaction_id,
+	amount,
+	amount_category,
+	ROW_NUMBER() OVER(ORDER BY amount DESC) AS transaction_rank
+FROM credit_card_transactions
+WHERE class = 1;
+
+
+-- =====================================================
+-- Business Question 15
+-- Create an executive summary of key fraud analytics
+-- metrics for dashboard reporting.
+--
+-- Expected Insight:
+-- Returns a consolidated summary of the most important
+-- fraud analytics KPIs for executive reporting.
+-- =====================================================
+
+WITH overall_summary AS (
+	SELECT
+		COUNT(*) AS total_transactions,
+		SUM(CASE WHEN class = 1 THEN 1 ELSE 0 END) AS fraud_transactions,
+		ROUND(AVG(amount)::numeric, 2) AS avg_transaction_amount
+	FROM credit_card_transactions
+),
+
+fraud_summary AS (
+	SELECT ROUND(AVG(amount)::numeric, 2) AS avg_fraud_amount
+	FROM credit_card_transactions
+	WHERE class = 1
+)
+
+SELECT 
+	total_transactions,
+	fraud_transactions,
+	ROUND((fraud_transactions * 100.0) / total_transactions, 2) AS fraud_percentage,
+	avg_transaction_amount,
+	avg_fraud_amount
+FROM overall_summary
+CROSS JOIN fraud_summary;
+	
+
+
+
+
+
 
