@@ -1,29 +1,49 @@
 # 💳 SecurePay Credit Card Fraud Analytics
 
-An end-to-end data analytics portfolio project that explores credit card fraud transactions using **Python**, **PostgreSQL**, and **Power BI**.
+An end-to-end data analytics portfolio project that analyzes credit card transactions to uncover fraud patterns using **Python, PostgreSQL, and Power BI**.
 
-The project follows a real-world analytics workflow, beginning with business understanding and data quality assessment, followed by data preprocessing, exploratory data analysis (EDA), feature engineering, SQL-based business analysis, interactive dashboard development, and executive reporting.
+The project follows a complete analytics workflow—from business understanding and data preparation to SQL-based business analysis, dashboard development, and executive reporting.
 
 ---
 
-# Project Objectives
+# Project Overview
 
-This project aims to:
+Credit card fraud is a highly imbalanced business problem where fraudulent transactions represent only a small fraction of total activity. This project demonstrates how data analytics can be used to transform raw transaction data into actionable business insights through exploratory analysis, SQL reporting, and interactive dashboards.
 
-- Analyze historical credit card transaction data to identify fraud-related patterns.
-- Perform data quality assessment and preprocessing.
-- Conduct exploratory data analysis to generate business insights.
-- Create meaningful engineered features for reporting and future predictive modeling.
-- Store and analyze data using PostgreSQL.
-- Answer business questions using SQL.
-- Develop an interactive Power BI dashboard.
-- Document the complete analytics workflow in a professional GitHub repository.
+The project emphasizes:
+
+- Data Quality Assessment
+- Data Preprocessing
+- Exploratory Data Analysis (EDA)
+- Feature Engineering
+- PostgreSQL Database Design
+- SQL Business Analysis
+- Power BI Dashboard Development
+- Executive Reporting & Documentation
+
+---
+
+## Dashboard Preview
+
+![SecurePay Dashboard](images/dashboard_overview.png)
+
+---
+
+# Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Programming | Python |
+| Data Analysis | Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn, Power BI |
+| Database | PostgreSQL |
+| Development | Jupyter Notebook, Git, GitHub |
 
 ---
 
 # Project Workflow
 
-```
+```text
 Business Understanding
         ↓
 Data Quality Assessment
@@ -34,9 +54,7 @@ Exploratory Data Analysis
         ↓
 Feature Engineering
         ↓
-PostgreSQL Database Design
-        ↓
-Data Import & ETL
+PostgreSQL Database
         ↓
 SQL Business Analysis
         ↓
@@ -44,42 +62,45 @@ Reporting Views
         ↓
 Power BI Dashboard
         ↓
-Executive Report
+Business Insights & Executive Report
 ```
-
----
-
-# Tech Stack
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- PostgreSQL
-- SQL
-- Power BI
-- Jupyter Notebook
-- Git & GitHub
 
 ---
 
 # Repository Structure
 
-```
+```text
 SecurePay-CreditCard-Fraud-Analytics/
 │
 ├── data/
 │   ├── raw/
-│   └── processed/
+│   ├── processed/
+│   └── README.md
 │
 ├── docs/
+│   ├── Business_Questions.md
+│   ├── Data_Dictionary.md
+│   ├── KPI_Definitions.md
+│   ├── Methodology.md
+│   ├── Project_Architecture.md
+│   └── Project_Roadmap.md
+│
+├── images/
 │
 ├── notebooks/
+│   ├── 01_Data_Quality_Assessment.ipynb
+│   ├── 02_Business_Understanding_and_Feature_Planning.ipynb
+│   ├── 03_Data_Preprocessing.ipynb
+│   ├── 04_Exploratory_Data_Analysis.ipynb
+│   └── 05_Feature_Engineering.ipynb
 │
 ├── powerbi/
+│   ├── Dashboard_Guide.md
+│   └── SecurePay_Fraud_Analytics_Dashboard.pbix
 │
 ├── reports/
+│   ├── Business_Insights.md
+│   └── Executive_Report.md
 │
 ├── sql/
 │   ├── 01_Create_Schema.sql
@@ -87,56 +108,60 @@ SecurePay-CreditCard-Fraud-Analytics/
 │   ├── 03_Business_Queries.sql
 │   └── 04_Create_Views.sql
 │
-├── images/
-│
-├── README.md
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-# Current Project Progress
+# Key Business Questions
 
-## Planning
+This project answers several business-focused questions, including:
 
-- ✅ Project Folder Structure
-- ✅ Dataset Selection
-- ✅ Business Problem
-- ✅ Project Objectives
+- How common is credit card fraud?
+- What is the overall fraud rate?
+- Which transaction amount categories have the highest fraud risk?
+- How do legitimate and fraudulent transaction amounts differ?
+- Which fraud cases should be prioritized for investigation?
+- How is fraud distributed across different spending levels?
+- Which KPIs best summarize fraud activity for business reporting?
 
-## Documentation
+---
 
-- ⏳ Data Dictionary
-- ⏳ Business Questions
-- ⏳ KPI Definitions
-- ⏳ Project Architecture
-- ⏳ Executive Summary
+# Dashboard Highlights
 
-## Data Understanding
+The Power BI dashboard provides:
 
-- ✅ Data Quality Assessment
-- ✅ Business Understanding
-- ✅ Data Preprocessing
-- ✅ Exploratory Data Analysis
-- ✅ Feature Engineering
+- Executive KPI summary
+- Fraud rate analysis by amount category
+- Fraud distribution across spending quartiles
+- Fraud transaction ranking
+- Transaction category analysis
+- Interactive category filtering
 
-## Database
+---
 
-- ✅ PostgreSQL Schema
-- ✅ Data Import
-- ✅ Business Queries
-- ✅ SQL Views
+# Documentation
 
-## Visualization
+Project documentation is organized into dedicated folders.
 
-- ⏳ Power BI Dashboard
-- ⏳ Dashboard Documentation
+### Documentation (`docs/`)
 
-## Reporting
+- Business Questions
+- Data Dictionary
+- KPI Definitions
+- Methodology
+- Project Architecture
+- Project Roadmap
 
-- ⏳ Executive Report
-- ⏳ README
-- ⏳ GitHub Polish
+### Reports (`reports/`)
+
+- Business Insights
+- Executive Report
+
+### Dashboard Documentation (`powerbi/`)
+
+- Dashboard Guide
 
 ---
 
@@ -144,38 +169,47 @@ SecurePay-CreditCard-Fraud-Analytics/
 
 **Dataset:** Credit Card Fraud Detection
 
-The dataset contains anonymized European credit card transactions collected over two days.
+The dataset contains anonymized European credit card transactions collected over a two-day period.
 
-**Source:**
+**Source**
+
 https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
-> **Note:** The dataset is not included in this repository because it exceeds GitHub's recommended file size. Download it from Kaggle and place `creditcard.csv` inside the `data/raw/` directory before running the notebooks.
+> **Note:** The original dataset is not included in this repository due to GitHub file size limitations. Download `creditcard.csv` from Kaggle and place it inside `data/raw/` before running the notebooks.
 
 ---
 
-# Current Status
+# Key Features
 
-🚧 This project is currently under active development.
-
-Completed so far:
-
-- Data Quality Assessment
-- Business Understanding
-- Data Preprocessing
-- Exploratory Data Analysis
-- Feature Engineering
-- PostgreSQL Database Design
-- Data Import & ETL
-- SQL Business Analysis
-- SQL Reporting Views
-
-The remaining phases include Power BI dashboard development, project documentation, executive reporting, and final GitHub polish.
+- End-to-end analytics workflow
+- Professional project documentation
+- SQL-based business reporting
+- PostgreSQL database implementation
+- Feature engineering
+- Power BI executive dashboard
+- Reusable SQL reporting views
+- Business-focused insights and recommendations
 
 ---
 
 # Future Improvements
 
+Potential enhancements include:
+
 - Machine Learning fraud detection models
+- Real-time fraud monitoring
+- Automated ETL pipeline
+- Dashboard performance optimization
 - Model evaluation and comparison
-- Interactive dashboard enhancements
-- Automated reporting pipeline
+
+---
+
+# Author
+
+**Harasis Singh Batra**
+
+Data Analytics & Data Science Portfolio Project
+
+---
+
+⭐ If you found this project useful, consider starring the repository.
